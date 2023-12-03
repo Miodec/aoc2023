@@ -1,5 +1,9 @@
 import * as fs from "fs";
 
+export function fileExists(path) {
+  return fs.existsSync(path);
+}
+
 export function loadFileAsString(filePath) {
   return fs.readFileSync(filePath, "utf8");
 }
