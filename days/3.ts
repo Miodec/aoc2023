@@ -3,14 +3,14 @@ import * as Core from "../core";
 console.log("Getting input...");
 const inputLines: string[] = Core.loadFileAsArray("./input/3.txt");
 
-function parse(line: string, _: number) {
+function parse(line: string, _: number): string[] {
   return line.split("");
 }
 
 console.log("Parsing...");
 const data = inputLines.map(parse);
 
-function part1() {
+function part1(): number {
   let currentNumber: string | null = null;
   let startingPos: [number, number] | null = null;
   let endingPos: [number, number] | null = null;
@@ -110,7 +110,7 @@ function expandSelectionAndReturnNumber(x, y): number {
 
 console.log(" -------- Expand test", expandSelectionAndReturnNumber(6, 2));
 
-function part2() {
+function part2(): number {
   console.log("Running part 2...");
   let total = 0;
   for (let y = 0; y < data.length; y++) {
