@@ -23,7 +23,7 @@ const scriptPath = `days/${puzzleDay}.ts`;
 
 const scriptBase = fs
   .readFileSync("days/base.ts", "utf8")
-  ?.replace("{{day}}", puzzleDay.toString());
+  ?.replace(/{{day}}/gi, puzzleDay.toString());
 
 console.log("Checking if input file exists...");
 if (!fs.existsSync(inputPath)) {
