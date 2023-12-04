@@ -19,6 +19,7 @@ if (hour < 5) {
 console.log("Puzzle day is: " + puzzleDay);
 
 const inputPath = `input/${puzzleDay}.txt`;
+const examplePath = `input/${puzzleDay}_ex.txt`;
 const scriptPath = `days/${puzzleDay}.ts`;
 
 const scriptBase = fs
@@ -29,6 +30,12 @@ console.log("Checking if input file exists...");
 if (!fs.existsSync(inputPath)) {
   console.log("Input doesn't exist, creating...");
   fs.writeFileSync(inputPath, "");
+}
+
+console.log("Checking if example file exists...");
+if (!fs.existsSync(examplePath)) {
+  console.log("Example doesn't exist, creating...");
+  fs.writeFileSync(examplePath, "");
 }
 
 console.log("Checking if script file exists...");
