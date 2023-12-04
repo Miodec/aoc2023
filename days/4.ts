@@ -91,8 +91,9 @@ function part2(example = false): number {
   }
 
   for (const card of data) {
+    console.log(`Checking card ${card.cardId}...`);
     const multiplier = cardMultipliers[card.cardId - 1] ?? 1;
-    // console.log(`Card ${card.cardId} has a multiplier of ${multiplier}.`);
+    console.log(`Card ${card.cardId} has a multiplier of ${multiplier}.`);
     for (let i = 0; i < multiplier; i++) {
       let matchCount = 0;
       for (const winningNumber of card.winningNumbers) {
@@ -100,8 +101,6 @@ function part2(example = false): number {
           matchCount++;
         }
       }
-
-      // console.log(`Card ${card.cardId} has ${matchCount} matching numbers.`);
 
       if (matchCount > 0) {
         for (let i = card.cardId; i < card.cardId + matchCount; i++) {
@@ -113,10 +112,8 @@ function part2(example = false): number {
         }
       }
     }
-
-    // console.log(cardMultipliers);
   }
-
+  console.log(`Finished checking all the cards. Calculating solution...`);
   solution = cardMultipliers.reduce((prev, current) => prev + current);
 
   //
