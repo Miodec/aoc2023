@@ -13,7 +13,7 @@ if (Core.fileExists("./input/{{day}}_ex.txt")) {
   console.error("Example input not found");
 }
 
-function parse(line: string, index: number): unknown {
+function parse(line: string, index: number) {
   return;
 }
 
@@ -58,8 +58,13 @@ function part2(example = false): number {
   return solution;
 }
 
-const p1 = part1();
-const p2 = part2();
+//
+// in case real input takes a long time to run
+const onlyRunExamples = false;
+//
+
+const p1 = onlyRunExamples ? undefined : part1();
+const p2 = onlyRunExamples ? undefined : part2();
 
 if (exampleLines === null) {
   console.error("Example data missing, can't check targets");
@@ -98,5 +103,7 @@ if (exampleLines === null) {
   }
 }
 
-console.log("Part 1 solution:", p1);
-console.log("Part 2 solution:", p2);
+if (!onlyRunExamples) {
+  console.log("Part 1 solution:", p1);
+  console.log("Part 2 solution:", p2);
+}
