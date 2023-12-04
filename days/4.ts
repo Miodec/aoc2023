@@ -94,24 +94,25 @@ function part2(example = false): number {
     console.log(`Checking card ${card.cardId}...`);
     const multiplier = cardMultipliers[card.cardId - 1] ?? 1;
     console.log(`Card ${card.cardId} has a multiplier of ${multiplier}.`);
-    for (let i = 0; i < multiplier; i++) {
-      let matchCount = 0;
-      for (const winningNumber of card.winningNumbers) {
-        if (card.allNumbers.includes(winningNumber)) {
-          matchCount++;
-        }
+    // for (let i = 0; i < multiplier; i++) {
+    let matchCount = 0;
+    for (const winningNumber of card.winningNumbers) {
+      if (card.allNumbers.includes(winningNumber)) {
+        matchCount++;
       }
+    }
 
-      if (matchCount > 0) {
-        for (let i = card.cardId; i < card.cardId + matchCount; i++) {
-          if (cardMultipliers[i] !== undefined) {
-            cardMultipliers[i] += 1;
-          } else {
-            cardMultipliers[i] = 1;
-          }
+    if (matchCount > 0) {
+      for (let i = card.cardId; i < card.cardId + matchCount; i++) {
+        if (cardMultipliers[i] !== undefined) {
+          cardMultipliers[i] += 1 * multiplier;
+          // cardMultipliers[i] += 1;
+        } else {
+          cardMultipliers[i] = 1;
         }
       }
     }
+    // }
   }
   console.log(`Finished checking all the cards. Calculating solution...`);
   solution = cardMultipliers.reduce((prev, current) => prev + current);
