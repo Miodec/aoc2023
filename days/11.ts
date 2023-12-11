@@ -60,7 +60,6 @@ function rotate2dArray(data: string[]): string[] {
   for (let i = 0; i < data.length; i++) {
     const row = data[i];
     for (let j = 0; j < row.length; j++) {
-      console.log(i, j);
       if (out[j] === undefined) out[j] = "";
       out[j] += row[j];
     }
@@ -135,14 +134,14 @@ function part1(example = false): number {
   return solution;
 }
 
-function part2(example = false): number {
+function part2sub(example = false, fac: number): number {
   const withExample = example && exampleData !== null;
   const data = withExample ? exampleData : inputData;
   console.log(`Running part 2${withExample ? " with example data" : ""}...`);
   let solution = 0;
   //
   // part 2
-  const expanded = applyExpansion(data, 1000000);
+  const expanded = applyExpansion(data, fac);
   const galaxies = findGalaxies(expanded);
   console.log("Finding distances...");
   const distances: { [key: string]: number } = {};
@@ -162,8 +161,30 @@ function part2(example = false): number {
     }
   }
   solution = Object.values(distances).reduce((a, b) => a + b);
+
   //
   return solution;
+}
+
+function part2(example = false): number {
+  const f1 = part2sub(example, 1);
+  const f10 = part2sub(example, 10);
+  const f100 = part2sub(example, 100);
+
+  const ext = [f1, f10, f100];
+
+  let i = ext.length - 1;
+  while (ext.length < 7) {
+    const val = ext[i];
+    const prev = ext[i - 1];
+    const diff = val - prev;
+    const diff10 = diff * 10;
+    const next = val + diff10;
+    ext.push(next);
+    i++;
+  }
+
+  return ext[ext.length - 1];
 }
 
 //
